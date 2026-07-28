@@ -105,6 +105,23 @@ em { color: var(--terracotta); }
 .collage img { width: 100%; height: auto; margin-bottom: var(--space-2);
                break-inside: avoid; display: block; border-radius: 2px; }
 
+/* 6. Homepage split layout */
+.split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-4);
+    align-items: start;
+  }
+  
+  /* 7. Homepage cover image */
+  .cover {
+    width: 100%;
+    max-width: 22rem;
+    height: auto;
+    display: block;
+    margin-left: auto;
+  }
+
 /* ============================================================
    NAV / FOOTER
    ============================================================ */
@@ -132,6 +149,6 @@ footer { margin-top: var(--space-5); padding-top: var(--space-2);
    ============================================================ */
 @media (max-width: 46rem) {
   .shell { padding: var(--space-3) var(--space-2) var(--space-4); }
-  .split { grid-template-columns: 1fr !important; }
+  .split { grid-template-columns: 1fr; }
   .collage { columns: 2; }
 }
