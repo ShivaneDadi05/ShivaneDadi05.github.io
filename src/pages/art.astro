@@ -1,0 +1,28 @@
+---
+import Base from '../layouts/Base.astro';
+import { Image } from 'astro:assets';
+
+// FLAT PILE: every image file in src/assets/art/ shows up here automatically.
+// To add a piece: drop the file in that folder. That's the whole workflow.
+const files = import.meta.glob<{ default: ImageMetadata }>(
+  '../assets/art/*.{jpg,jpeg,png,webp,avif}', { eager: true }
+);
+const art = Object.entries(files)
+  .sort(([a], [b]) => b.localeCompare(a))   // newest filenames first
+  .map(([, mod]) => mod.default);
+---
+<Base title="Art — Shivane Dadi">
+  <h1>Art</h1>
+  <hr class="rule" />
+
+  {art.length === 0 ? (
+    <p class="label">Drop image files into src/assets/art/ and they'll appear here.</p>
+  ) : (
+    <div class="collage">
+      {art.map(img => (
+        <Image src={img} alt="" widths={[300, 600, 900]}
+               sizes="(max-width: 46rem) 45vw, 20rem" loading="lazy" />
+      ))}
+    </div>
+  )}
+</Base>

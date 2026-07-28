@@ -1,0 +1,137 @@
+/* ============================================================
+   DESIGN TOKENS
+   Almost everything you'd want to change lives in this block.
+   ============================================================ */
+:root {
+  /* Palette */
+  --paper:       #F4F0E6;
+  --paper-tint:  #EAE4D2;
+  --rule:        #D6D0BE;
+  --ink:         #24231E;
+  --ink-soft:    #3D3A32;
+  --ink-muted:   #8A8474;
+  --sage:        #6E7F6A;
+  --pewter:      #4A6B72;
+  --terracotta:  #C4622D;
+
+  /* Type — swap the first entry once your font files are wired up */
+  --font-serif: Georgia, 'Iowan Old Style', 'Times New Roman', serif;
+  --font-sans:  ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-mono:  ui-monospace, 'SF Mono', Menlo, monospace;
+
+  /* Type scale */
+  --size-display: 1.9rem;
+  --size-h2:      1.25rem;
+  --size-body:    1rem;
+  --size-small:   0.875rem;
+  --size-label:   0.6875rem;
+
+  /* Spacing scale */
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.75rem;
+  --space-4: 3rem;
+  --space-5: 5rem;
+
+  /* Layout */
+  --measure: 34rem;      /* max width of a paragraph */
+  --page-max: 62rem;     /* max width of the page shell */
+}
+
+/* ============================================================
+   BASE
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-serif);
+  font-size: var(--size-body);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+.shell {
+  max-width: var(--page-max);
+  margin: 0 auto;
+  padding: var(--space-4) var(--space-3) var(--space-5);
+}
+
+a { color: inherit; text-decoration: none; border-bottom: 1px solid var(--rule); }
+a:hover { border-bottom-color: var(--terracotta); }
+
+h1, h2, h3 { font-weight: 500; line-height: 1.25; }
+h1 { font-size: var(--size-display); margin: 0 0 var(--space-1); }
+h2 { font-size: var(--size-h2); margin: var(--space-3) 0 var(--space-1); }
+
+p { max-width: var(--measure); }
+
+em { color: var(--terracotta); }
+
+/* ============================================================
+   RECURRING MOVES  (the 5 patterns the whole site is built from)
+   ============================================================ */
+
+/* 1. Small letterspaced caps label */
+.label {
+  font-family: var(--font-sans);
+  font-size: var(--size-label);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  margin: 0 0 var(--space-1);
+}
+
+/* 2. Hairline rule */
+.rule { height: 1px; background: var(--rule); border: 0; margin: var(--space-2) 0; }
+
+/* 3. Plus-marked list */
+.plus-list { list-style: none; padding: 0; margin: 0; }
+.plus-list li { line-height: 2; }
+.plus-list li::before { content: '+ '; color: var(--sage); }
+.plus-list .note { font-family: var(--font-sans); font-size: var(--size-small); color: var(--ink-muted); }
+
+/* 4. Entry row (blog index, research list) */
+.entry { display: flex; justify-content: space-between; gap: var(--space-2);
+         align-items: baseline; padding: var(--space-1) 0;
+         border-bottom: 1px solid var(--rule); }
+.entry time { font-family: var(--font-sans); font-size: var(--size-label);
+              letter-spacing: 0.1em; color: var(--ink-muted); white-space: nowrap; }
+
+/* 5. Masonry collage — the art gallery, 4 lines of real CSS */
+.collage { columns: 3; column-gap: var(--space-2); }
+.collage img { width: 100%; height: auto; margin-bottom: var(--space-2);
+               break-inside: avoid; display: block; border-radius: 2px; }
+
+/* ============================================================
+   NAV / FOOTER
+   ============================================================ */
+.topbar { display: flex; justify-content: space-between; align-items: baseline;
+          margin-bottom: var(--space-4); }
+.topbar .home { font-size: 1.05rem; border: 0; }
+.topbar nav { display: flex; gap: var(--space-2); font-family: var(--font-sans);
+              font-size: var(--size-small); }
+footer { margin-top: var(--space-5); padding-top: var(--space-2);
+         border-top: 1px solid var(--rule); }
+
+/* ============================================================
+   PROSE (blog posts)
+   ============================================================ */
+.prose { max-width: var(--measure); }
+.prose img { max-width: 100%; height: auto; }
+.prose pre { background: var(--paper-tint); padding: var(--space-2);
+             border-radius: 3px; overflow-x: auto; font-size: var(--size-small); }
+.prose code { font-family: var(--font-mono); font-size: 0.9em; }
+.prose blockquote { margin: var(--space-2) 0; padding-left: var(--space-2);
+                    border-left: 2px solid var(--sage); color: var(--ink-soft); }
+
+/* ============================================================
+   MOBILE
+   ============================================================ */
+@media (max-width: 46rem) {
+  .shell { padding: var(--space-3) var(--space-2) var(--space-4); }
+  .split { grid-template-columns: 1fr !important; }
+  .collage { columns: 2; }
+}

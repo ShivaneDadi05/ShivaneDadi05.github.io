@@ -1,0 +1,36 @@
+---
+import '../styles/global.css';
+import 'katex/dist/katex.min.css';
+
+interface Props { title: string; description?: string; }
+const { title, description = 'Shivane Dadi — quantum algorithms, writing, and drawings.' } = Astro.props;
+const nav = [
+  { href: '/writing', label: 'writing' },
+  { href: '/research', label: 'research' },
+  { href: '/art', label: 'art' },
+  { href: '/cv', label: 'cv' },
+];
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <link rel="alternate" type="application/rss+xml" title="Shivane Dadi" href="/rss.xml" />
+  </head>
+  <body>
+    <div class="shell">
+      <div class="topbar">
+        <a class="home" href="/">Shivane Dadi</a>
+        <nav>{nav.map(i => <a href={i.href}>{i.label}</a>)}</nav>
+      </div>
+      <slot />
+      <footer>
+        <p class="label">email · github · scholar</p>
+      </footer>
+    </div>
+  </body>
+</html>

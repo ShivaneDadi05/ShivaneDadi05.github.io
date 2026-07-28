@@ -1,0 +1,28 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+
+const projects = (await getCollection('research'))
+  .sort((a, b) => a.data.order - b.data.order || b.data.year - a.data.year);
+---
+<Base title="Research — Shivane Dadi">
+  <h1>Research</h1>
+  <hr class="rule" />
+
+  {projects.length === 0 && <p class="label">Nothing here yet.</p>}
+
+  {projects.map(p => (
+    <section style="margin-bottom: var(--space-3);">
+      <p class="label">{p.data.year}{p.data.role && ` · ${p.data.role}`}</p>
+      <h2 style="margin-top:0;">{p.data.title}</h2>
+      <p>{p.data.summary}</p>
+      <p class="label" style="margin-top:var(--space-1);">
+        {p.data.paper  && <a href={p.data.paper}>paper</a>}
+        {p.data.paper  && (p.data.code || p.data.poster) && ' · '}
+        {p.data.code   && <a href={p.data.code}>code</a>}
+        {p.data.code   && p.data.poster && ' · '}
+        {p.data.poster && <a href={p.data.poster}>poster</a>}
+      </p>
+    </section>
+  ))}
+</Base>
