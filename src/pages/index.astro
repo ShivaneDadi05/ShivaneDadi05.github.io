@@ -11,47 +11,52 @@ const featured = Object.values(artFiles)[0]?.default;
 
 const posts = (await getCollection('blog', ({ data }) => !data.draft))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
-  .slice(0, 3);
+  .slice(0, 2);
 ---
-<Base title="Shivane Dadi">
-  <div class="split">
+<Base title="Shivane Dadi" bare>
+  <div class="home-page">
 
-    <div>
-      <h1>Shivane Dadi</h1>
-      <p class="label">CS · UCSB · quantum computing</p>
+    <div class="home-text">
+      <div class="home-text-inner">
+        <h1>Shivane Dadi</h1>
+        <p class="label">CS · UCSB · quantum computing</p>
 
-      <p>
-        Site currently under construction
-      </p>
+        <p>
+          Site currently under construction
+        </p>
 
-      <hr class="rule" />
+        <hr class="rule" />
 
-      <ul class="plus-list">
-        <li><a href="/writing">writing</a> <span class="note">— notes, mostly technical</span></li>
-        <li><a href="/research">research</a> <span class="note">— papers, posters, code</span></li>
-        <li><a href="/art">art</a> <span class="note">— the whole pile</span></li>
-        <li><a href="/cv">cv</a> <span class="note">— pdf</span></li>
-      </ul>
+        <ul class="plus-list">
+          <li><a href="/writing">writing</a> <span class="note">— notes, mostly technical</span></li>
+          <li><a href="/research">research</a> <span class="note">— papers, posters, code</span></li>
+          <li><a href="/art">art</a> <span class="note">— the whole pile</span></li>
+          <li><a href="/cv">cv</a> <span class="note">— pdf</span></li>
+        </ul>
 
-      {posts.length > 0 && (
-        <>
-          <hr class="rule" />
-          <p class="label">Recent writing</p>
-          {posts.map(p => (
-            <div class="entry">
-              <a href={`/writing/${p.id}`}>{p.data.title}</a>
-              <time datetime={p.data.date.toISOString()}>
-                {p.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'short' })}
-              </time>
-            </div>
-          ))}
-        </>
-      )}
+        {posts.length > 0 && (
+          <>
+            <hr class="rule" />
+            <p class="label">Recent writing</p>
+            {posts.map(p => (
+              <div class="entry">
+                <a href={`/writing/${p.id}`}>{p.data.title}</a>
+                <time datetime={p.data.date.toISOString()}>
+                  {p.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'short' })}
+                </time>
+              </div>
+            ))}
+          </>
+        )}
+
+        <hr class="rule" />
+        <p class="label">email · github · scholar</p>
+      </div>
     </div>
 
-    <div>
+    <div class="home-art">
       {featured ? (
-        <Image src={featured} alt="" widths={[400, 800]} sizes="(max-width: 46rem) 90vw, 22rem" class="cover" />
+        <Image src={featured} alt="" widths={[800, 1400, 2000]} sizes="(max-width: 46rem) 100vw, 50vw" />
       ) : (
         <div style="aspect-ratio:3/4; background:var(--paper-tint); display:grid; place-items:center;">
           <p class="label" style="margin:0;">Drop art into src/assets/art/</p>

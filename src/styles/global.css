@@ -105,22 +105,31 @@ em { color: var(--terracotta); }
 .collage img { width: 100%; height: auto; margin-bottom: var(--space-2);
                break-inside: avoid; display: block; border-radius: 2px; }
 
-/* 6. Homepage split layout */
-.split {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--space-4);
-    align-items: start;
-  }
-  
-  /* 7. Homepage cover image */
-  .cover {
-    width: 100%;
-    max-width: 22rem;
-    height: auto;
-    display: block;
-    margin-left: auto;
-  }
+/* 6. Locked homepage split — fills the viewport, never scrolls */
+body.is-bare { overflow: hidden; }
+
+.home-page {
+  height: 100vh;
+  height: 100dvh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.home-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: var(--space-3);
+  overflow-y: auto;
+  min-height: 0;
+}
+.home-text-inner { width: 100%; max-width: 30rem; margin-left: auto; }
+.home-art { position: relative; overflow: hidden; }
+.home-art img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+}
 
 /* ============================================================
    NAV / FOOTER
@@ -149,6 +158,10 @@ footer { margin-top: var(--space-5); padding-top: var(--space-2);
    ============================================================ */
 @media (max-width: 46rem) {
   .shell { padding: var(--space-3) var(--space-2) var(--space-4); }
-  .split { grid-template-columns: 1fr; }
+  body.is-bare { overflow: auto; }
+  .home-page { grid-template-columns: 1fr; height: auto; }
+  .home-art { height: 45vh; order: -1; }
+  .home-text { overflow: visible; padding: var(--space-3) var(--space-2); }
+  .home-text-inner { max-width: none; margin-left: 0; }
   .collage { columns: 2; }
 }
