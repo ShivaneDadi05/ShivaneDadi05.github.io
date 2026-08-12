@@ -131,6 +131,16 @@ body.is-bare { overflow: hidden; }
   display: block;
 }
 
+/* 7. Embedded PDF viewer (cv page) */
+.pdf-frame {
+  width: 100%;
+  height: 80vh;
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+  background: var(--paper-tint);
+  display: block;
+}
+
 /* ============================================================
    NAV / FOOTER
    ============================================================ */
@@ -164,4 +174,5 @@ footer { margin-top: var(--space-5); padding-top: var(--space-2);
   .home-text { overflow: visible; padding: var(--space-3) var(--space-2); }
   .home-text-inner { max-width: none; margin-left: 0; }
   .collage { columns: 2; }
+  .pdf-frame { height: 60vh; }
 }

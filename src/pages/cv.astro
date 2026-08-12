@@ -3,10 +3,13 @@ import Base from '../layouts/Base.astro';
 ---
 <Base title="CV — Shivane Dadi">
   <h1>CV</h1>
+  <p class="label"><a href="/cv.pdf" download>download pdf</a></p>
   <hr class="rule" />
-  <p>
-    Put <code>cv.pdf</code> in the <code>public/</code> folder, then this link works:
-    <a href="/cv.pdf">download CV (PDF)</a>.
-  </p>
-  <p class="label">Optionally list education / publications / talks here too.</p>
+
+  <object class="pdf-frame" data="/cv.pdf" type="application/pdf">
+    <p>
+      Your browser can't display PDFs inline.
+      <a href="/cv.pdf">Download the CV instead</a>.
+    </p>
+  </object>
 </Base>
