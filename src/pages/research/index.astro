@@ -5,7 +5,7 @@ import { getCollection } from 'astro:content';
 const projects = (await getCollection('research'))
   .sort((a, b) => a.data.order - b.data.order || b.data.year - a.data.year);
 ---
-<Base title="Research — Shivane Dadi">
+<Base title="Shivane | Research">
   <h1>Research</h1>
   <hr class="rule" />
 

@@ -5,14 +5,18 @@ import { Image } from 'astro:assets';
 // FLAT PILE: every image file in src/assets/art/ shows up here automatically.
 // To add a piece: drop the file in that folder. That's the whole workflow.
 const files = import.meta.glob<{ default: ImageMetadata }>(
-  '../assets/art/*.{jpg,jpeg,png,webp,avif}', { eager: true }
+  '../assets/art/*.{jpg,jpeg,JPG,png,webp,avif}', { eager: true }
 );
 const art = Object.entries(files)
   .sort(([a], [b]) => b.localeCompare(a))   // newest filenames first
   .map(([, mod]) => mod.default);
 ---
-<Base title="Art — Shivane Dadi">
+<Base title="Shivane | Art">
   <h1>Art</h1>
+  <p>
+          Drawing always represented a medium for me where I can just dissolve and have fun with no expectations.
+          I hope you'll enjoy some of my sketches 
+    </p>
   <hr class="rule" />
 
   {art.length === 0 ? (
