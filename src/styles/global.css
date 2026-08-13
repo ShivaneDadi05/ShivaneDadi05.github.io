@@ -122,7 +122,7 @@ body.is-bare { overflow: hidden; }
   overflow-y: auto;
   min-height: 0;
 }
-.home-text-inner { width: 100%; max-width: 30rem; margin-left: auto; }
+.home-text-inner { width: 100%; max-width: 30rem; margin-left: auto; margin-right: 4rem;}
 .home-art { position: relative; overflow: hidden; }
 .home-art img {
   position: absolute; inset: 0;

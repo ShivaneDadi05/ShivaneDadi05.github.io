@@ -18,12 +18,14 @@ const research = defineCollection({
   schema: z.object({
     title: z.string(),
     year: z.number(),
-    summary: z.string(),
+    summary: z.string(), // 1–2 paragraph abstract; use a YAML `|` block for line breaks
     role: z.string().optional(),
     // Optional links — omit any that don't apply to a given project.
-    paper: z.string().url().optional(),
+    // All but `code` accept either an absolute URL or a site-root path like "/pdf/name.pdf".
+    writeup: z.string().optional(),
+    paper: z.string().optional(),
     code: z.string().url().optional(),
-    poster: z.string().url().optional(),
+    poster: z.string().optional(),
     order: z.number().default(0), // lower = higher on the page
   }),
 });
