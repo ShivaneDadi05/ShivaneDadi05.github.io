@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import 'katex/dist/katex.min.css';
+import Contact from '../components/Contact.astro';
 
 interface Props { title: string; description?: string; bare?: boolean; }
 const {
@@ -36,7 +37,7 @@ const nav = [
         </div>
         <slot />
         <footer>
-          <p class="label">email · github · scholar</p>
+          <Contact />
         </footer>
       </div>
     )}

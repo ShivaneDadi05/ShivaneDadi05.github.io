@@ -141,6 +141,14 @@ body.is-bare { overflow: hidden; }
   display: block;
 }
 
+/* 8. Contact line — muted like .label, but left in normal case for the address */
+.contact {
+  font-family: var(--font-sans);
+  font-size: var(--size-small);
+  color: var(--ink-muted);
+  margin: 0;
+}
+
 /* ============================================================
    NAV / FOOTER
    ============================================================ */

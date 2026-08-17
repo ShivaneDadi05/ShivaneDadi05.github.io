@@ -2,7 +2,7 @@
 title: "Testing the pipeline"
 date: 2026-07-27
 description: "A throwaway post to confirm Markdown, code, and math all render."
-draft: false
+draft: true
 ---
 
 This post exists to prove the build works. Delete it whenever.

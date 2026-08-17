@@ -1,5 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
+import Contact from '../components/Contact.astro';
 import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
 
@@ -19,23 +20,23 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
     <div class="home-text">
       <div class="home-text-inner">
         <h1>Shivane Dadi</h1>
-        <p class="label">CS · UCSB · quantum computing</p>
+        <p class="label">Student</p>
 
         <p>
-          Hello, I'm a student at UCSB. Enjoy my budding website
+          Hi, my name is Shivane, I hope you'll enjoy your time in my budding website
         </p>
 
         <p>
-          While still under dev. Here are some places to explore:
+          Here are some places to explore:
         </p>
 
         <hr class="rule" />
 
         <ul class="plus-list">
-          <li><a href="/writing">writing</a> <span class="note">— notes, mostly technical</span></li>
-          <li><a href="/research">research</a> <span class="note">— papers, posters, code</span></li>
-          <li><a href="/art">art</a> <span class="note">— the whole pile</span></li>
-          <li><a href="/cv">cv</a> <span class="note">— pdf</span></li>
+          <li><a href="/writing">writing</a> <span class="note">— a place to collect my thoughts</span></li>
+          <li><a href="/research">research</a> <span class="note">— a brief summary of my work</span></li>
+          <li><a href="/art">art</a> <span class="note">— a collection of some of my sketches</span></li>
+          <li><a href="/cv">cv</a> <span class="note">— a formal version of my work</span></li>
         </ul>
 
         {posts.length > 0 && (
@@ -54,7 +55,7 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
         )}
 
         <hr class="rule" />
-        <p class="label">email · github · scholar</p>
+        <Contact />
       </div>
     </div>
 
