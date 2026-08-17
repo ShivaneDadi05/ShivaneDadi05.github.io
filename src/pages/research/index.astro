@@ -13,10 +13,11 @@ const projects = (await getCollection('research'))
 
   {projects.map(p => {
     const links = [
-      { label: 'writeup', href: p.data.writeup },
-      { label: 'paper',   href: p.data.paper },
-      { label: 'code',    href: p.data.code },
-      { label: 'poster',  href: p.data.poster },
+      { label: 'writeup',      href: p.data.writeup },
+      { label: 'presentation', href: p.data.presentation },
+      { label: 'paper',        href: p.data.paper },
+      { label: 'code',         href: p.data.code },
+      { label: 'poster',       href: p.data.poster },
     ].filter((l): l is { label: string; href: string } => Boolean(l.href));
 
     return (

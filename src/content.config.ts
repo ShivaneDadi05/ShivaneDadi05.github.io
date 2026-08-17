@@ -23,6 +23,7 @@ const research = defineCollection({
     // Optional links — omit any that don't apply to a given project.
     // All but `code` accept either an absolute URL or a site-root path like "/pdf/name.pdf".
     writeup: z.string().optional(),
+    presentation: z.string().optional(),
     paper: z.string().optional(),
     code: z.string().url().optional(),
     poster: z.string().optional(),

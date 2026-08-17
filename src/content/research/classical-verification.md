@@ -10,5 +10,5 @@ summary: |
 
   This project was done as a final report for a course on Post-Quantum Cryptography.
 writeup: "/pdf/CS292G_Research_Report.pdf"
-order: 2
+order: 3
 ---
