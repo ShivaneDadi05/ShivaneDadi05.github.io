@@ -8,9 +8,10 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
 <Base title="Shivane | Writing">
   <h1>Writing</h1>
   <p>
-          I always thought people with blogs were the coolest. While there is nothing here yet, I hope to
-          use this space going forward to focus on eloquating my thoughts on life and also to practice my 
-          own skills in CS/Math by explaining and breaking down concepts.
+          I always thought people with blogs were the coolest. While there is barely anything here yet, 
+          I hope to use this space going forward to focus on eloquating my thoughts on life and also to 
+          practice my own skills in CS/Math by explaining and breaking down concepts. The first couple
+          posts will naturally be written... horribly, but such is the process of learning anything.
     </p>
   <hr class="rule" />
   {posts.length === 0 && <p class="label">Nothing published yet.</p>}
