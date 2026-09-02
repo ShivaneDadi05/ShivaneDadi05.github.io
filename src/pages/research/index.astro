@@ -7,6 +7,16 @@ const projects = (await getCollection('research'))
 ---
 <Base title="Shivane | Research">
   <h1>Research</h1>
+  <p>
+          My research interests can be broadly encapsulated in 
+          "How do we make quantum computers practically useful." 
+          To be more explicit, I am really interested in discovering the structures that prevent
+          current quantum systems from being important/useful and attacking those bottlenecks. 
+          Naturally, the fields of Quantum error correction, systems for quantum computing, 
+          quantum algorithms, and dequantization are especially appealing to me.
+
+          Below you can find some summaries on the research I have worked on so far.
+    </p>
   <hr class="rule" />
 
   {projects.length === 0 && <p class="label">Nothing here yet.</p>}
