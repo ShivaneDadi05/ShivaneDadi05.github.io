@@ -141,6 +141,20 @@ body.is-bare { overflow: hidden; }
   display: block;
 }
 
+.about-layout {
+    display: grid;
+    grid-template-columns: 1fr 18rem;
+    gap: var(--space-4);
+    align-items: start;
+  }
+
+.about-photo {
+width: 100%;
+height: auto;
+display: block;
+border-radius: 2px; /* same soft edge as art images */
+}
+
 /* 8. Contact line — muted like .label, but left in normal case for the address */
 .contact {
   font-family: var(--font-sans);
@@ -183,4 +197,6 @@ footer { margin-top: var(--space-5); padding-top: var(--space-2);
   .home-text-inner { max-width: none; margin-left: 0; }
   .collage { columns: 2; }
   .pdf-frame { height: 60vh; }
+  .about-layout { grid-template-columns: 1fr; }
+  .about-photo { max-width: 18rem; }
 }

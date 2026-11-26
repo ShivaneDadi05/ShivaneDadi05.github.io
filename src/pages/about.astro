@@ -1,0 +1,41 @@
+---
+import Base from '../layouts/Base.astro';
+import { Image } from 'astro:assets';
+import portrait from '../assets/about/portrait.jpg';
+---
+<Base title="Shivane | About">
+  <h1>About Me</h1>
+
+  <div class="about-layout">
+    <div class="about-copy">
+        <p>
+        I am a Master's student in the Computer Science department at UC Santa Barbara.
+        I am extremely fortunate to be advised  
+        by <a href="https://cs.ucsb.edu/people/faculty/murphy-niu" target="_blank" 
+        rel="noopener">Murphy Niu</a> and <a href=
+        "https://materials.ucsb.edu/people/faculty/vojtech-vlcek" target="_blank" 
+        rel="noopener">Vojtech Vlcek</a>.
+        </p>
+
+        <p>
+        My primary research interest is in quantum computing and broadly around
+        quantum algorithms and error correction.
+        You can read more about my work on my <a href="/research">research page</a>.
+        </p>
+
+        <p>
+        In my free time, I enjoy <a href="/art">drawing</a> and watching movies 
+        (<a href="https://boxd.it/64vhl" target="_blank" rel="noopener">my letterboxd account</a>).
+        I am currently also trying to get better at writing.
+        </p>
+    </div>
+
+    <Image
+      src={portrait}
+      alt="Shivane Dadi"
+      widths={[400, 800]}
+      sizes="(max-width: 46rem) 100vw, 18rem"
+      class="about-photo"
+    />
+  </div>
+</Base>
