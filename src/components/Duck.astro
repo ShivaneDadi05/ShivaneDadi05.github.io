@@ -1,0 +1,50 @@
+---
+// Duck walks in from the left, hops near the right edge, walks off, pauses, repeats.
+// Sprite: public/about/duck1.png, 19 frames of 36×32 in one row (9 walk, then 10 jump).
+const F = 36, H = 32;        // frame size, source px
+const WALK = 9, JUMP = 10;   // frame counts in the sheet
+const D = 5;                 // px advanced per walk cycle
+const S = 96;                // scene width, source px
+const fps = 12;
+
+const PAD = 8, RIGHT = 31;        // duck's left/right edge inside its frame (measured from the sprite)
+const HOP = S - F;                // hop spot (= 60): whole frame, dust included, stays in the scene
+const ENTER = HOP + D * Math.ceil((S - PAD - HOP) / D);   // first cycle x fully past the right edge (= 90)
+const L = D * Math.ceil((ENTER - D + RIGHT) / D);         // wrap width (= 120): copy hidden until ENTER
+const REST = Math.round(0.75 * fps);                       // pause after landing
+
+const loop: [number, number][] = [];   // one [frame, x] per tick
+let x = HOP;
+loop.push([0, x]);                                        // beat before the hop
+for (let j = 0; j < JUMP; j++) loop.push([WALK + j, x]);  // hop
+for (let i = 0; i < REST; i++) loop.push([0, x]);         // rest after landing
+for (let c = 0; c < L / D; c++) {                         // one full lap
+  for (let k = 0; k < WALK; k++) loop.push([k, x]);
+  x += D;
+}
+
+// Rotate so the page opens on the duck entering from the left
+const start = loop.findIndex(([f, x]) => f === 0 && x === ENTER);
+const score = [...loop.slice(start), ...loop.slice(0, start)];
+
+const N = score.length;
+const keyframes = score
+  .map(([f, x], i) => `${(100 * i / N).toFixed(3)}% {
+    background-position-x: calc(${-f * F}px * var(--s));
+    transform: translateX(calc(${x}px * var(--s))); }`)
+  .join('\n');
+---
+<input type="checkbox" id="duck-pause" class="duck-pause" autocomplete="off" />
+<div class="scene">
+  <div
+    class="duck"
+    role="img"
+    aria-label="A small duck walks across, hops, and walks off"
+    style={`--w:${F}px; --h:${H}px; --n:${WALK + JUMP}; --L:${L}px; 
+    animation-duration:${N / fps}s`}
+  ></div>
+</div>
+<label for="duck-pause" class="label duck-toggle">
+  <span class="if-running">pause</span><span class="if-paused">play</span>
+</label>
+<style is:inline set:html={`@keyframes duck-score {\n${keyframes}\n}`}></style>

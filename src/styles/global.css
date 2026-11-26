@@ -163,6 +163,56 @@ border-radius: 2px; /* same soft edge as art images */
   margin: 0;
 }
 
+/* 9. Pixel duck (about page). Sprite lives in public/ so Astro never resamples it */
+.scene {
+    --s: 5;                       /* whole numbers only, or pixel widths go uneven */
+    position: relative;
+    overflow: hidden;
+    width: calc(96px * var(--s));
+    height: calc(32px * var(--s));
+    margin-top: var(--space-3);
+    outline: 3px solid var(--ink-soft);
+  }
+  .duck {
+    position: absolute; left: 0; bottom: 0;
+    width: calc(var(--w) * var(--s));
+    height: calc(var(--h) * var(--s));
+    background: url(/about/duck.png) 0 0 / calc(var(--w) * var(--n) * var(--s)) 100% no-repeat;
+    image-rendering: pixelated;
+    animation: duck-score 1s step-end infinite;   /* real duration set inline by Duck.astro */
+  }
+  .duck::after {          /* wrap-around copy: enters on the left as the duck exits right */
+    content: '';
+    position: absolute; inset: 0;
+    transform: translateX(calc(-1 * var(--L) * var(--s)));
+    background: inherit;  /* picks up the animated frame from .duck */
+  }
+  /* Pause toggle, CSS only: the hidden checkbox holds the state */
+.duck-pause {                     /* hidden but still focusable by keyboard */
+    position: absolute; width: 1px; height: 1px;
+    overflow: hidden; clip-path: inset(50%); white-space: nowrap;
+  }
+  .duck-toggle { display: inline-block; margin: var(--space-1) 0 0; cursor: pointer; }
+  .duck-toggle:hover { color: var(--terracotta); }
+  .duck-pause:focus-visible ~ .duck-toggle { outline: 1px solid var(--ink); outline-offset: 2px; }
+  
+  .duck-toggle .if-paused { display: none; }
+  .duck-pause:checked ~ .scene .duck { animation-play-state: paused; }
+  .duck-pause:checked ~ .duck-toggle .if-running { display: none; }
+  .duck-pause:checked ~ .duck-toggle .if-paused { display: inline; }
+  
+  /* Reduced motion: start paused, and checking the box means "play" instead */
+  @media (prefers-reduced-motion: reduce) {
+    .duck { animation-play-state: paused; animation-delay: -4s; }
+    .duck-pause:checked ~ .scene .duck { animation-play-state: running; }
+    .duck-toggle .if-running { display: none; }
+    .duck-toggle .if-paused { display: inline; }
+    .duck-pause:checked ~ .duck-toggle .if-running { display: inline; }
+    .duck-pause:checked ~ .duck-toggle .if-paused { display: none; }
+  }
+  @media (max-width: 32rem) { .scene { --s: 4; } }
+  @media (max-width: 26rem) { .scene { --s: 3; } }
+  @media (max-width: 20rem) { .scene { --s: 2; } }
 /* ============================================================
    NAV / FOOTER
    ============================================================ */

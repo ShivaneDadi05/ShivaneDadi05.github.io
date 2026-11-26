@@ -2,6 +2,7 @@
 import Base from '../layouts/Base.astro';
 import { Image } from 'astro:assets';
 import portrait from '../assets/about/portrait.jpg';
+import Duck from '../components/Duck.astro';
 ---
 <Base title="Shivane | About">
   <h1>About Me</h1>
@@ -28,6 +29,8 @@ import portrait from '../assets/about/portrait.jpg';
         (<a href="https://boxd.it/64vhl" target="_blank" rel="noopener">my letterboxd account</a>).
         I am currently also trying to get better at writing.
         </p>
+
+        <Duck />    
     </div>
 
     <Image
